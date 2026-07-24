@@ -1,0 +1,25 @@
+Angular Project Structure Notes
+
+1. angular.json
+Configures the Angular workspace, including build settings, development server, assets, styles, and production settings.
+
+2. tsconfig.json
+Contains the main TypeScript compiler configuration used by the Angular project.
+
+3. tsconfig.app.json
+Contains TypeScript compiler settings specifically for the Angular application source code.
+
+4. package.json
+Contains the project's dependencies, development dependencies, and npm scripts.
+
+5. src/main.ts
+The main entry point of the Angular application. It bootstraps and starts the Angular application.
+
+6. src/app/app.config.ts
+Contains application-level configuration and providers for the standalone Angular application.
+
+7. src/app/app.ts
+Defines the root component of the Angular application.
+
+8. src/index.html
+The main HTML page loaded by the browser. Angular renders the application inside this page.

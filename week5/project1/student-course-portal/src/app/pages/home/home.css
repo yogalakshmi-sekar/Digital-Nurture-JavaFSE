@@ -1,0 +1,27 @@
+.home-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.home-container h1 {
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.stat-card {
+  padding: 20px;
+  width: 180px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+}
