@@ -1,0 +1,20 @@
+<h1>Available Courses</h1>
+
+<app-course-card
+  [course]="course1"
+  (enrollRequested)="onEnroll($event)">
+</app-course-card>
+
+<app-course-card
+  [course]="course2"
+  (enrollRequested)="onEnroll($event)">
+</app-course-card>
+
+<app-course-card
+  [course]="course3"
+  (enrollRequested)="onEnroll($event)">
+</app-course-card>
+
+<hr>
+
+<h2>Selected Course ID: {{ selectedCourseId }}</h2>
