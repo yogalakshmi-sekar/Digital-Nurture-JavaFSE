@@ -1,0 +1,19 @@
+<h3>All Courses</h3>
+
+<div class="add-row">
+  <input
+    type="text"
+    placeholder="New course name (optional)"
+    [(ngModel)]="newCourseName"
+    name="newCourseName" />
+  <button (click)="addSampleCourse()">+ Add Course (proves singleton)</button>
+</div>
+
+<div class="grid">
+  <app-course-card
+    *ngFor="let course of courses"
+    [course]="course">
+  </app-course-card>
+</div>
+
+<app-notification></app-notification>

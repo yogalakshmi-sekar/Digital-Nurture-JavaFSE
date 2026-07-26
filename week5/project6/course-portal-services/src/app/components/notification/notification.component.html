@@ -1,0 +1,10 @@
+<div class="notification-box">
+  <div class="header">
+    <span>Notifications (scoped instance)</span>
+    <button (click)="addSample()">+ Add</button>
+  </div>
+  <ul *ngIf="notificationService.getAll().length; else empty">
+    <li *ngFor="let msg of notificationService.getAll()">{{ msg }}</li>
+  </ul>
+  <ng-template #empty><p class="empty">No notifications yet.</p></ng-template>
+</div>

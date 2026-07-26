@@ -1,0 +1,12 @@
+<div class="card" (click)="onCardClick()">
+  <h4>{{ course.name }}</h4>
+  <p class="code">{{ course.code }} &middot; {{ course.credits }} credits</p>
+  <span class="badge" [ngClass]="course.gradeStatus">{{ course.gradeStatus }}</span>
+
+  <button
+    class="enroll-btn"
+    [class.enrolled]="isEnrolled"
+    (click)="toggleEnroll($event)">
+    {{ isEnrolled ? 'Unenroll' : 'Enroll' }}
+  </button>
+</div>

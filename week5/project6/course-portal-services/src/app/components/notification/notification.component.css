@@ -1,0 +1,22 @@
+.notification-box {
+  border: 1px dashed #9575cd;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.header button {
+  border: none;
+  background: #ede7f6;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ul { margin: 8px 0 0; padding-left: 18px; }
+.empty { color: #888; margin: 8px 0 0; }
