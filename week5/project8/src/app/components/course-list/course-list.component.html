@@ -1,0 +1,28 @@
+<div class="container">
+  <app-loading-spinner></app-loading-spinner>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <app-course-form (create)="onCreate($event)"></app-course-form>
+
+  <div *ngFor="let course of courses; trackBy: trackByCourseId">
+    <app-course-card
+      [course]="course"
+      [isEnrolled]="enrolledIds.includes(course.id)"
+      (enroll)="onEnroll($event)"
+      (unenroll)="onUnenroll($event)"
+      (select)="onSelect($event)"
+      (remove)="onDelete($event)">
+    </app-course-card>
+  </div>
+
+  <div *ngIf="(students$ | async) as students">
+    <h3>Enrolled Students</h3>
+    <ul>
+      <li *ngFor="let s of students">{{ s.name }}</li>
+    </ul>
+    <p *ngIf="students.length === 0">No students enrolled in this course yet.</p>
+  </div>
+</div>
