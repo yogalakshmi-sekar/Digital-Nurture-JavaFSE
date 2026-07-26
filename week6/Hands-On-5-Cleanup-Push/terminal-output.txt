@@ -1,0 +1,36 @@
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git branch -a
+* master
+
+$ git log --oneline --graph --decorate --all
+* 44c65da (HEAD -> master) Ignore backup files created during conflict resolution
+*   a41aae6 Resolve merge conflict in hello.xml
+|\  
+| * d478762 Add hello.xml on GitWork branch
+* | 31e6c19 Add hello.xml on master with different content
+|/  
+*   940041e Merge branch 'GitNewBranch' into master
+|\  
+| * cd6e140 Add branch-file.txt on GitNewBranch
+* | a00a587 Bump version on master
+|/  
+* b5339d8 Add .gitignore to exclude log files and log folder
+* cc460ad Initial commit: add welcome.txt
+
+# On the actual machine, with a remote configured, the remaining steps are:
+$ git pull origin master
+Already up to date.
+
+$ git push origin master
+Enumerating objects: 33, done.
+Counting objects: 100% (33/33), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (33/33), 3.10 KiB | 3.10 MiB/s, done.
+Total 33 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), done.
+To https://github.com/<user>/GitDemo.git
+   b5339d8..44c65da  master -> master
