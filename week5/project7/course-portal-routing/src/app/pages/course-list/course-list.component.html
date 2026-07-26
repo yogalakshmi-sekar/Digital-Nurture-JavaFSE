@@ -1,0 +1,31 @@
+<h3>All Courses</h3>
+
+<div class="search-row">
+  <input
+    type="text"
+    placeholder="Search by name or code..."
+    [(ngModel)]="searchTerm"
+    name="searchTerm"
+    (ngModelChange)="onSearchChange()" />
+</div>
+
+<div class="add-row">
+  <input
+    type="text"
+    placeholder="New course name (optional)"
+    [(ngModel)]="newCourseName"
+    name="newCourseName" />
+  <button (click)="addSampleCourse()">+ Add Course</button>
+</div>
+
+<div class="grid">
+  <app-course-card
+    *ngFor="let course of filteredCourses"
+    [course]="course"
+    (cardClicked)="onCardClicked($event)">
+  </app-course-card>
+</div>
+
+<p *ngIf="!filteredCourses.length" class="empty">No courses match "{{ searchTerm }}".</p>
+
+<app-notification></app-notification>

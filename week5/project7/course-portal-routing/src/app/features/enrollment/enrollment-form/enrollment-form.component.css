@@ -1,0 +1,80 @@
+.form-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.field {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Task 45: Angular's automatically applied state classes */
+.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+
+.ng-valid.ng-touched {
+  border-color: green !important;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.checkbox-field label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actions button[type='submit'] {
+  background: #1a237e;
+  color: #fff;
+}
+
+.actions button[type='submit']:disabled {
+  background: #9fa8da;
+  cursor: not-allowed;
+}
+
+.actions button[type='button'] {
+  background: #eee;
+}
+
+.success {
+  margin-top: 16px;
+  color: #2e7d32;
+  font-weight: 600;
+}

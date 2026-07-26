@@ -1,0 +1,93 @@
+<div class="form-wrapper">
+  <h3>Student Enrollment Request (Reactive)</h3>
+
+  <!-- Task 50: [formGroup] binds the whole form; no ngModel anywhere -->
+  <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()">
+
+    <div class="field">
+      <label for="studentName">Student Name</label>
+      <input id="studentName" type="text" formControlName="studentName" />
+      <span class="error" *ngIf="enrollForm.get('studentName')?.touched && enrollForm.get('studentName')?.errors?.['required']">
+        Name is required
+      </span>
+      <span class="error" *ngIf="enrollForm.get('studentName')?.touched && enrollForm.get('studentName')?.errors?.['minlength']">
+        Name must be at least 3 characters
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="studentEmail">Student Email</label>
+      <input id="studentEmail" type="email" formControlName="studentEmail" />
+      <span class="pending" *ngIf="enrollForm.get('studentEmail')?.pending">
+        Checking email availability...
+      </span>
+      <span class="error" *ngIf="enrollForm.get('studentEmail')?.touched && enrollForm.get('studentEmail')?.errors?.['required']">
+        Email is required
+      </span>
+      <span class="error" *ngIf="enrollForm.get('studentEmail')?.touched && enrollForm.get('studentEmail')?.errors?.['email']">
+        Enter a valid email address
+      </span>
+      <!-- Task 55: async validator error -->
+      <span class="error" *ngIf="enrollForm.get('studentEmail')?.errors?.['emailTaken']">
+        This email is already taken
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="courseId">Course Id</label>
+      <input id="courseId" type="text" formControlName="courseId" />
+      <span class="error" *ngIf="enrollForm.get('courseId')?.touched && enrollForm.get('courseId')?.errors?.['required']">
+        Course Id is required
+      </span>
+      <!-- Task 54: custom validator error -->
+      <span class="error" *ngIf="enrollForm.get('courseId')?.errors?.['noCourseCode']">
+        Course code starting with XX is not allowed.
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="preferredSemester">Preferred Semester</label>
+      <select id="preferredSemester" formControlName="preferredSemester">
+        <option value="Odd">Odd</option>
+        <option value="Even">Even</option>
+      </select>
+    </div>
+
+    <div class="field checkbox-field">
+      <label>
+        <input type="checkbox" formControlName="agreeToTerms" />
+        I agree to the terms and conditions
+      </label>
+      <span class="error" *ngIf="enrollForm.get('agreeToTerms')?.touched && enrollForm.get('agreeToTerms')?.errors?.['required']">
+        You must accept the terms to continue
+      </span>
+    </div>
+
+    <!-- Task 56: FormArray for dynamic, repeating controls -->
+    <div class="field">
+      <label>Additional Courses</label>
+      <div class="array-row" *ngFor="let ctrl of additionalCourses.controls; let i = index">
+        <input type="text" [formControl]="$any(ctrl)" placeholder="Course code" />
+        <button type="button" class="remove-btn" (click)="removeCourse(i)">Remove</button>
+      </div>
+      <button type="button" class="add-btn" (click)="addCourse()">+ Add Another Course</button>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="enrollForm.invalid">Submit</button>
+      <button type="button" (click)="onReset()">Reset</button>
+    </div>
+
+    <div class="success" *ngIf="submitted">
+      Enrollment request submitted successfully!
+    </div>
+
+    <!-- Debug panel: handy while learning / demoing value vs getRawValue -->
+    <div class="debug" *ngIf="lastValue">
+      <h4>enrollForm.value</h4>
+      <pre>{{ lastValue | json }}</pre>
+      <h4>enrollForm.getRawValue()</h4>
+      <pre>{{ lastRawValue | json }}</pre>
+    </div>
+  </form>
+</div>
