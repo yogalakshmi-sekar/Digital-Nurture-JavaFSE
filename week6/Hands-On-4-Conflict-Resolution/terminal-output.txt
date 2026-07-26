@@ -1,0 +1,138 @@
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git checkout -b GitWork
+Switched to a new branch 'GitWork'
+
+$ cat > hello.xml << 'EOF'
+<root>
+  <version>1.0</version>
+  <message>Hello from GitWork branch</message>
+</root>
+EOF
+
+$ git status
+On branch GitWork
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	hello.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ git add hello.xml
+$ git commit -m "Add hello.xml on GitWork branch"
+[GitWork d478762] Add hello.xml on GitWork branch
+ 1 file changed, 4 insertions(+)
+ create mode 100644 hello.xml
+
+$ git checkout master
+Switched to branch 'master'
+
+$ cat > hello.xml << 'EOF'
+<root>
+  <version>2.0</version>
+  <message>Hello from master branch</message>
+</root>
+EOF
+[master 31e6c19] Add hello.xml on master with different content
+ 1 file changed, 4 insertions(+)
+ create mode 100644 hello.xml
+
+$ git log --oneline --graph --decorate --all
+* d478762 (GitWork) Add hello.xml on GitWork branch
+| * 31e6c19 (HEAD -> master) Add hello.xml on master with different content
+|/  
+*   940041e Merge branch 'GitNewBranch' into master
+|\  
+| * cd6e140 Add branch-file.txt on GitNewBranch
+* | a00a587 Bump version on master
+|/  
+* b5339d8 Add .gitignore to exclude log files and log folder
+* cc460ad Initial commit: add welcome.txt
+
+$ git diff master GitWork -- hello.xml
+diff --git a/hello.xml b/hello.xml
+index d9a38c5..1147738 100644
+--- a/hello.xml
++++ b/hello.xml
+@@ -1,4 +1,4 @@
+ <root>
+-  <version>2.0</version>
+-  <message>Hello from master branch</message>
++  <version>1.0</version>
++  <message>Hello from GitWork branch</message>
+ </root>
+
+$ git merge GitWork
+Auto-merging hello.xml
+CONFLICT (add/add): Merge conflict in hello.xml
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both added:      hello.xml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+--- hello.xml AFTER conflict (with conflict markers) ---
+<root>
+<<<<<<< HEAD
+  <version>2.0</version>
+  <message>Hello from master branch</message>
+=======
+  <version>1.0</version>
+  <message>Hello from GitWork branch</message>
+>>>>>>> GitWork
+</root>
+# Manually edit hello.xml to resolve the conflict (remove markers, keep reconciled content)
+--- hello.xml AFTER manual resolution ---
+<root>
+  <version>2.0</version>
+  <message>Hello from master branch, merged with GitWork branch changes</message>
+</root>
+
+$ git add hello.xml
+$ git commit -m "Resolve merge conflict in hello.xml"
+[master a41aae6] Resolve merge conflict in hello.xml
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ echo "*.orig" >> .gitignore
+$ cat .gitignore
+*.log
+log/
+*.orig
+$ git add .gitignore
+$ git commit -m "Ignore backup files created during conflict resolution"
+[master 44c65da] Ignore backup files created during conflict resolution
+ 1 file changed, 1 insertion(+)
+
+$ git branch -a
+  GitWork
+* master
+$ git branch -d GitWork
+Deleted branch GitWork (was d478762).
+
+$ git log --oneline --graph --decorate --all
+* 44c65da (HEAD -> master) Ignore backup files created during conflict resolution
+*   a41aae6 Resolve merge conflict in hello.xml
+|\  
+| * d478762 Add hello.xml on GitWork branch
+* | 31e6c19 Add hello.xml on master with different content
+|/  
+*   940041e Merge branch 'GitNewBranch' into master
+|\  
+| * cd6e140 Add branch-file.txt on GitNewBranch
+* | a00a587 Bump version on master
+|/  
+* b5339d8 Add .gitignore to exclude log files and log folder
+* cc460ad Initial commit: add welcome.txt
