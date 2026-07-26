@@ -1,0 +1,11 @@
+<h2>Available Courses</h2>
+
+<p>isLoading = {{ isLoading }}</p>
+
+<p *ngIf="isLoading">
+  Loading Courses...
+</p>
+
+<p *ngIf="!isLoading">
+  Courses Loaded Successfully!
+</p>
