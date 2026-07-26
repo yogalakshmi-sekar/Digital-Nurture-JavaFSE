@@ -1,0 +1,16 @@
+{
+  "courses": [
+    { "id": 1, "title": "Angular Fundamentals", "credits": 4, "instructor": "R. Sharma" },
+    { "id": 2, "title": "Spring Boot Microservices", "credits": 5, "instructor": "A. Verma" },
+    { "id": 3, "title": "React for Beginners", "credits": 3, "instructor": "S. Iyer" },
+    { "id": 4, "title": "SQL & Database Design", "credits": 0, "instructor": "P. Nair" }
+  ],
+  "students": [
+    { "id": 1, "name": "Yogalakshmi Sekar", "courseId": 1 },
+    { "id": 2, "name": "Karthik R", "courseId": 1 },
+    { "id": 3, "name": "Divya M", "courseId": 2 }
+  ],
+  "enrollments": [
+    { "id": 1, "studentId": 1, "courseId": 1 }
+  ]
+}
