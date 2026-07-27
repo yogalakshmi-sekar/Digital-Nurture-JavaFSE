@@ -1,0 +1,53 @@
+.search-row { margin-bottom: 10px; }
+.search-row input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.empty { color: #888; font-size: 13px; }
+.add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.add-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.add-row button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  background: #1a237e;
+  color: #fff;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.error {
+  color: #c62828;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-wrapper { display: flex; flex-direction: column; gap: 6px; }
+.row-actions { display: flex; gap: 6px; }
+.row-actions button {
+  flex: 1;
+  font-size: 11px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background: #eee;
+  cursor: pointer;
+}
+.row-actions button.danger { background: #ffcdd2; }

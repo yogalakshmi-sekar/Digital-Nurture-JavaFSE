@@ -1,0 +1,38 @@
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.card h4 { margin: 0 0 4px; }
+.code { color: #666; font-size: 13px; margin: 0 0 8px; }
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.badge.passed { background: #c8e6c9; color: #2e7d32; }
+.badge.failed { background: #ffcdd2; color: #c62828; }
+.badge.pending { background: #fff9c4; color: #f57f17; }
+.enroll-btn {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #1a237e;
+  color: #fff;
+  cursor: pointer;
+}
+.enroll-btn.enrolled {
+  background: #eee;
+  color: #333;
+}

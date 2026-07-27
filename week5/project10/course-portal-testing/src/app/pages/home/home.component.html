@@ -1,0 +1,13 @@
+<section class="stats-row">
+  <div class="stat-card">
+    <span class="stat-number">{{ (liveCourseCount$ | async) ?? '…' }}</span>
+    <span class="stat-label">Live Courses (via NgRx store)</span>
+  </div>
+</section>
+
+<p>
+  Welcome to the Student Course Portal. Visit <strong>Courses</strong> to browse
+  and enroll, or <strong>Profile</strong> to see your enrolled courses.
+</p>
+
+<app-course-summary-widget></app-course-summary-widget>

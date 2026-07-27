@@ -1,0 +1,102 @@
+<div class="form-wrapper">
+  <h3>Student Enrollment Request</h3>
+
+  <!-- Task 39: #enrollForm='ngForm' gives access to the NgForm directive instance -->
+  <form #enrollForm="ngForm" (ngSubmit)="onSubmit(enrollForm)">
+
+    <!-- Student Name -->
+    <div class="field">
+      <label for="studentName">Student Name</label>
+      <input
+        id="studentName"
+        name="studentName"
+        type="text"
+        [(ngModel)]="studentName"
+        required
+        minlength="3"
+        #nameCtrl="ngModel" />
+
+      <!-- Task 44: contextual error messages, shown only after 'touched' -->
+      <span class="error" *ngIf="nameCtrl.touched && nameCtrl.errors?.['required']">
+        Name is required
+      </span>
+      <span class="error" *ngIf="nameCtrl.touched && nameCtrl.errors?.['minlength']">
+        Name must be at least 3 characters
+      </span>
+    </div>
+
+    <!-- Student Email -->
+    <div class="field">
+      <label for="studentEmail">Student Email</label>
+      <input
+        id="studentEmail"
+        name="studentEmail"
+        type="email"
+        [(ngModel)]="studentEmail"
+        required
+        email
+        #emailCtrl="ngModel" />
+
+      <span class="error" *ngIf="emailCtrl.touched && emailCtrl.errors?.['required']">
+        Email is required
+      </span>
+      <span class="error" *ngIf="emailCtrl.touched && emailCtrl.errors?.['email']">
+        Enter a valid email address
+      </span>
+    </div>
+
+    <!-- Course Id -->
+    <div class="field">
+      <label for="courseId">Course Id</label>
+      <input
+        id="courseId"
+        name="courseId"
+        type="number"
+        [(ngModel)]="courseId"
+        required
+        #courseCtrl="ngModel" />
+
+      <span class="error" *ngIf="courseCtrl.touched && courseCtrl.errors?.['required']">
+        Course Id is required
+      </span>
+    </div>
+
+    <!-- Preferred Semester -->
+    <div class="field">
+      <label for="preferredSemester">Preferred Semester</label>
+      <select id="preferredSemester" name="preferredSemester" [(ngModel)]="preferredSemester" required>
+        <option value="Odd">Odd</option>
+        <option value="Even">Even</option>
+      </select>
+    </div>
+
+    <!-- Agree to Terms -->
+    <div class="field checkbox-field">
+      <label>
+        <input
+          type="checkbox"
+          name="agreeToTerms"
+          [(ngModel)]="agreeToTerms"
+          required
+          #termsCtrl="ngModel" />
+        I agree to the terms and conditions
+      </label>
+      <span class="error" *ngIf="termsCtrl.touched && termsCtrl.errors?.['required']">
+        You must accept the terms to continue
+      </span>
+    </div>
+
+    <div class="actions">
+      <!-- Task 41: Submit disabled while form invalid -->
+      <button type="submit" [disabled]="enrollForm.invalid">Submit</button>
+
+      <!-- Task 47: Reset clears fields and validation state -->
+      <button type="button" (click)="enrollForm.resetForm(); onReset()">Reset</button>
+    </div>
+
+    <!-- Task 46: success message shown after valid submit -->
+    <div class="success" *ngIf="submitted">
+      Enrollment request submitted successfully!
+    </div>
+  </form>
+</div>

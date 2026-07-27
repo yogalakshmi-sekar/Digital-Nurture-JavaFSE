@@ -1,0 +1,14 @@
+<div class="card" (click)="onCardClick()">
+  <h4>{{ course.name }}</h4>
+  <p class="code">{{ course.code }} &middot; {{ course.credits }} credits</p>
+  <span class="badge" [ngClass]="course.gradeStatus">{{ course.gradeStatus }}</span>
+
+  <ng-container *ngIf="isEnrolled$ | async as isEnrolled">
+    <button
+      class="enroll-btn"
+      [class.enrolled]="isEnrolled"
+      (click)="toggleEnroll($event, isEnrolled)">
+      {{ isEnrolled ? 'Unenroll' : 'Enroll' }}
+    </button>
+  </ng-container>
+</div>
